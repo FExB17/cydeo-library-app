@@ -5,16 +5,16 @@ Feature: Library app login feature
   Background: Assuming that the user already is on the login page
     Given User is on the login page
 
-  @student
+  @studentParameter
   Scenario: Login as a student
-    When user enters student username
-    And user enters student password
+    When user enters student username "student2@library"
+    And user enters student password "libraryUser"
     And User clicks on Login button
     Then books should be displayed
 
-  @librarian @employee
+  @librarianParameter @employee
   Scenario: Login as a librarian
-    When user enters librarian username
-    And user enters librarian password
+    When user enters librarian username "librarian2@library"
+    And user enters librarian password "libraryUser"
     And User clicks on Login button
     Then dashboard should be displayed

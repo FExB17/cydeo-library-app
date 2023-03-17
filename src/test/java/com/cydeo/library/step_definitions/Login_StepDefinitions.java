@@ -4,10 +4,13 @@ import com.cydeo.library.pages.LibraryHome_Page;
 import com.cydeo.library.pages.LibraryLogin_Page;
 import com.cydeo.library.utilities.ConfigurationReader;
 import com.cydeo.library.utilities.Driver;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Login_StepDefinitions {
 
@@ -20,7 +23,7 @@ LibraryHome_Page homePage = new LibraryHome_Page();
     }
 
     @When("user enters student username")
-    public void user_enters_student_username() throws InterruptedException {
+    public void user_enters_student_username() {
         loginPage.emailInput.sendKeys("student1@library");
     }
     @When("user enters student password")
@@ -40,15 +43,42 @@ LibraryHome_Page homePage = new LibraryHome_Page();
     public void user_clicks_on_login_button() {
         loginPage.loginButton.click();
     }
-    @Then("User should see the dashboard")
-    public void user_should_see_the_dashboard() throws InterruptedException {
-        Thread.sleep(2000);
+    @Then("books should be displayed")
+    public void books_should_be_displayed() {
        /* String actual = homePage.DashBoardText.getText();
         Assert.assertEquals("not on home page","Book Management",actual);*/
-
+        String expected = "books";
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(),10);
+        wait.until(ExpectedConditions.urlContains(expected));
         System.out.println(Driver.getDriver().getCurrentUrl());
-        Assert.assertTrue("no dashboard",Driver.getDriver().getCurrentUrl().contains("dashboard"));
+        Assert.assertTrue(Driver.getDriver().getCurrentUrl().contains(expected));
+    }
+    @Then("dashboard should be displayed")
+    public void dashboardShouldBeDisplayed() {
+        String expected = "dashboard";
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(),10);
+        wait.until(ExpectedConditions.urlContains(expected));
+
+        Assert.assertTrue(Driver.getDriver().getCurrentUrl().contains(expected));
     }
 
+    @When("user enters student username {string}")
+    public void userEntersStudentUsername(String arg0) {
+        loginPage.emailInput.sendKeys(arg0);
+    }
 
+    @And("user enters student password {string}")
+    public void userEntersStudentPassword(String arg0) {
+        loginPage.passwordInput.sendKeys(arg0);
+    }
+
+    @When("user enters librarian username {string}")
+    public void userEntersLibrarianUsername(String arg0) {
+        loginPage.emailInput.sendKeys(arg0);
+    }
+
+    @And("user enters librarian password {string}")
+    public void userEntersLibrarianPassword(String arg0) {
+        loginPage.passwordInput.sendKeys(arg0);
+    }
 }

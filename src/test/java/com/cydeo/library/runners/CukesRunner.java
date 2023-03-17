@@ -13,7 +13,7 @@ import org.junit.runner.RunWith;
                 "rerun:target/rerun.txt",
                 "html:target/cucumber.html"
         },
-        tags = "",
+        tags = "@studentParameter or @librarian",
         dryRun = false
 )
 
