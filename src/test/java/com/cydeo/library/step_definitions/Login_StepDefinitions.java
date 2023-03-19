@@ -1,7 +1,7 @@
 package com.cydeo.library.step_definitions;
 
-import com.cydeo.library.pages.LibraryHome_Page;
-import com.cydeo.library.pages.LibraryLogin_Page;
+import com.cydeo.library.pages.Home_Page;
+import com.cydeo.library.pages.Login_Page;
 import com.cydeo.library.utilities.ConfigurationReader;
 import com.cydeo.library.utilities.Driver;
 import io.cucumber.java.en.And;
@@ -14,8 +14,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Login_StepDefinitions {
 
-LibraryLogin_Page loginPage = new LibraryLogin_Page();
-LibraryHome_Page homePage = new LibraryHome_Page();
+Login_Page loginPage = new Login_Page();
+Home_Page homePage = new Home_Page();
 
     @Given("User is on the login page")
     public void user_is_on_the_login_page() {
@@ -68,17 +68,39 @@ LibraryHome_Page homePage = new LibraryHome_Page();
     }
 
     @And("user enters student password {string}")
-    public void userEntersStudentPassword(String arg0) {
-        loginPage.passwordInput.sendKeys(arg0);
+    public void userEntersStudentPassword(String password) {
+        loginPage.passwordInput.sendKeys(password);
     }
 
     @When("user enters librarian username {string}")
-    public void userEntersLibrarianUsername(String arg0) {
-        loginPage.emailInput.sendKeys(arg0);
+    public void userEntersLibrarianUsername(String username) {
+        loginPage.emailInput.sendKeys(username);
     }
 
     @And("user enters librarian password {string}")
     public void userEntersLibrarianPassword(String arg0) {
         loginPage.passwordInput.sendKeys(arg0);
     }
+
+    @When("user logs in with librarian username {string} and librarian password {string}")
+    public void userLogsInWithLibrarianUsernameAndLibrarianPassword(String username, String password) {
+        loginPage.login(username,password);
+    }
+
+    @When("user logs in with student username {string} and student password {string}")
+    public void userLogsInWithStudentUsernameAndStudentPassword(String username, String password) {
+        loginPage.login(username,password);
+    }
+
+    @And("there should be {string} users")
+    public void thereShouldBeUsers(String userCount) {
+
+        String expectedUserCount = "1852";
+        String actualUserCount = homePage.userCount.getText();
+        Assert.assertEquals("number of users can have changed",expectedUserCount,actualUserCount);
+    }
+
+
+
+
 }

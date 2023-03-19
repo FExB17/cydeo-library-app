@@ -5,13 +5,16 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class LibraryHome_Page {
-    public LibraryHome_Page() {
-        PageFactory.initElements(Driver.getDriver(), this);
+import java.util.List;
+
+public class Users_Page {
+
+    public Users_Page(){
+        PageFactory.initElements(Driver.getDriver(),this);
     }
 
-    @FindBy (xpath = "//h3[.='Book Management']")
-    public WebElement DashBoardText;
+    @FindBy (xpath = "//th")
+    public List<WebElement> TableHeaders;
 
 
 
