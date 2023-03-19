@@ -10,6 +10,5 @@ import org.junit.runner.RunWith;
         glue = "com/cydeo/library/step_definitions"
 )
 
-
 public class FailedRunner {
 }

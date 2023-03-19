@@ -16,8 +16,7 @@ public class Home_Page {
     @FindBy(id="user_count")
     public WebElement userCount;
 
-    @FindBy(xpath = "//span[.='Users']")
-    public WebElement usersPageLink;
+
 
 
 }

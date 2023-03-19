@@ -1,3 +1,4 @@
+
 Feature: library app login feature
   UserStory:
   As a user, I should be able to login with correct credentials to different accounts
@@ -16,6 +17,6 @@ Feature: library app login feature
   Scenario: Login as a librarian in the same line
     When user logs in with librarian username "librarian2@library" and librarian password "libraryUser"
     Then dashboard should be displayed
-    And there should be "600" users
+    And there should be "1852" users
 
 

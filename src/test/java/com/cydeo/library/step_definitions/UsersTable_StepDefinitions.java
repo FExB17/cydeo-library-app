@@ -1,5 +1,6 @@
 package com.cydeo.library.step_definitions;
 
+import com.cydeo.library.pages.PageBase;
 import com.cydeo.library.pages.Home_Page;
 import com.cydeo.library.pages.Users_Page;
 import io.cucumber.java.en.And;
@@ -10,14 +11,15 @@ import org.openqa.selenium.WebElement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UsersTable_StepDefinitions {
+public class UsersTable_StepDefinitions extends PageBase {
 
     Home_Page homePage = new Home_Page();
     Users_Page usersPage = new Users_Page();
 
+
     @And("user goes to Users page")
     public void userGoesToUsersPage() throws InterruptedException {
-        homePage.usersPageLink.click();
+        usersPageLink.click();
     }
 
     @Then("user should see columns")
